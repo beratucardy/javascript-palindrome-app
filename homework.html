@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="number" id="txtNumber" />
+    <button onclick="dependant()">Control</button>
+    <script>
+      const numberEl = document.querySelector("#txtNumber");
+      function dependant() {
+        const result = controlPalindrome(Number(numberEl.value));
+        alert(`The number you entered is${result ? "" : " not"} palindrome.`);
+      }
+      function controlPalindrome(num) {
+        if (!num || isNaN(num) || (num < 100 && num > -100)) {
+          return false;
+        }
+        num = Math.abs(num);
+        const newNum = Array.from(String(num), Number);
+        newNum.reverse();
+        const newNum2 = newNum.reduce(
+          (accum, newNum) => accum * 10 + newNum,
+          0
+        );
+        if (num === newNum2) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    </script>
+  </body>
+</html>
